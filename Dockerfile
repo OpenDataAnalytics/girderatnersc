@@ -1,4 +1,4 @@
-FROM girder/girder:2.3
+FROM girder/girder:latest
 
 ADD newt /girder/plugins/newt
 
