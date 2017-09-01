@@ -2,30 +2,24 @@
 
 import router from 'girder/router';
 import events from 'girder/events';
+import { fetchCurrentUser } from 'girder/auth';
+import FrontPageView from 'girder/views/body/FrontPageView';
+import { wrap } from 'girder/utilities/PluginUtils';
 
 import Login from './Login';
 
-router.route('', 'jobView', function (id) {
+router.route('newt', 'newt', function (id) {
     events.trigger('g:navigateTo', Login, {
     });
 });
 
-// router.route('jobs/user/:id(/:view)', 'jobList', function (id, view) {
-//     events.trigger('g:navigateTo', JobListWidget, {
-//         filter: { userId: id },
-//         view: view,
-//         showGraphs: true,
-//         showFilters: true,
-//         showPageSizeSelector: true
-//     });
-// });
-
-// router.route('jobs(/:view)', 'allJobList', function (view) {
-//     events.trigger('g:navigateTo', JobListWidget, {
-//         allJobsMode: true,
-//         view: view,
-//         showGraphs: true,
-//         showFilters: true,
-//         showPageSizeSelector: true
-//     });
-// });
+wrap(FrontPageView, 'render', function (render) {
+    fetchCurrentUser()
+        .done((user) => {
+            console.log(user);
+            if (!user) {
+                router.navigate('/newt', { trigger: true });
+            }
+        })
+    return this;
+});
