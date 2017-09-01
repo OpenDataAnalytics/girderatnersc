@@ -1,13 +1,10 @@
-import _ from 'underscore';
 import $ from 'jquery';
 import router from 'girder/router';
 import { restRequest } from 'girder/rest';
 import View from 'girder/views/View';
-import events from 'girder/events';
 
 import template from './Login.pug';
 import './Login.styl';
-
 
 var Login = View.extend({
     events: {
@@ -37,7 +34,7 @@ var Login = View.extend({
             url: 'https://newt.nersc.gov/newt/login',
             data: {
                 username,
-                password,
+                password
             }
         })
             .then((result) => {
@@ -51,11 +48,12 @@ var Login = View.extend({
                 return restRequest({
                     method: 'PUT',
                     url: `newt/authenticate/${sessionId}`
-                })
+                });
             })
             .then((result) => {
                 router.navigate('/', { trigger: true });
                 location.reload();
+                return undefined;
             })
             .catch(() => {
                 this.loading = false;
@@ -65,8 +63,7 @@ var Login = View.extend({
                     this.render();
                 }, 3000);
                 this.render();
-            })
-
+            });
     }
 });
 

@@ -14,12 +14,13 @@ router.route('newt', 'newt', function (id) {
 });
 
 wrap(FrontPageView, 'render', function (render) {
+    render.call(this);
+    // Currently I didn't find a better way to check if user have logged in
     fetchCurrentUser()
         .done((user) => {
-            console.log(user);
             if (!user) {
                 router.navigate('/newt', { trigger: true });
             }
-        })
+        });
     return this;
 });
