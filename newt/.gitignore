@@ -1,0 +1,11 @@
+*.py[cod]
+node_modules
+girder.egg-info
+.DS_Store
+__pycache__
+### PyCharm ###
+.idea/
+.PyCharm50/
+.eslintcache
+/npm-debug.log
+**/*.retry
