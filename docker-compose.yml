@@ -13,7 +13,7 @@ girder:
 web:
     build: ./nginx
     dockerfile: Dockerfile
-    ports: 
+    ports:
         - "8080:80"
     links:
-        - "girder:girder"
+        - "girder:localhost"
