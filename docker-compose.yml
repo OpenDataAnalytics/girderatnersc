@@ -16,4 +16,4 @@ web:
     ports:
         - "8080:80"
     links:
-        - "girder:localhost"
+        - "girder:girder"
