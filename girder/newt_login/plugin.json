@@ -1,0 +1,7 @@
+{
+    "name": "NEWT login plugin",
+    "description": "Provide a login page for user to login girder instance with Nersc credential",
+    "dependencies": [
+    ],
+    "version": "0.1.0"
+}
